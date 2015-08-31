@@ -1,8 +1,8 @@
 /************************************************************************
 *************************************************************************
 @Name :       	Selectyze - jQuery Plugin
-@Revison :    	1.2
-@Date : 		25/01/2011
+@Revison :    	1.3
+@Date : 		31/08/2015
 @Author:     	Mickael SURREL - ALPIXEL Agency - (www.myjqueryplugins.com - www.alpixel.fr) 
 @Contributor on github :     	CSÉCSY László (www.kybest.hu)
 @License :		 Open Source - MIT License : http://www.opensource.org/licenses/mit-license.php
@@ -56,9 +56,12 @@
 
 			UlSelect.find('a').click(function(e){
 				e.preventDefault();
-				DivSelect.find('a.selectyzeValue').text($(this).text());
-				$this.val($(this).attr('rel'));           
-				$this.trigger('change');         
+				var SelA = DivSelect.find('a.selectyzeValue')
+					, relVal = $(this).attr('rel');
+				SelA.text($(this).text());
+				$this.val(relVal);
+				SelA.attr('rel', relVal);
+				$this.trigger('change');
 				if (!opts.preventClose) {
 					closeList($this.next().find('.UlSelectize'));
 				}
